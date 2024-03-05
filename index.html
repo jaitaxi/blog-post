@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOG POST</title>
+</head>
+
+<body>
+    <style>
+        form {
+            width: 30%;
+            margin: auto;
+            padding: 10px 0;
+            border: 1px solid black;
+
+        }
+
+        input,
+        textarea,
+        select {
+            display: block;
+            padding: 10px;
+            border: 1px solid black;
+            margin: auto;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            margin: auto;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        th {
+            background-color: white;
+        }
+    </style>
+
+
+    <!-- form-section -->
+    <form id="form">
+        <h1>New Blog Post</h1>
+        <input type="url" id="img" placeholder="img">
+        <input type="text" id="title" placeholder="Name of Product" required>
+        <textarea id="content" placeholder="Content" required></textarea>
+        <select id="category" required>
+            <option value="Select category">Select category</option>
+            <option value="food">Food</option>
+            <option value="Healthcare">Healthcare</option>
+        </select>
+        <input type="submit">
+    </form>
+
+    <hr>
+    <!-- table-section -->
+    <table border="1px solid black" cellspacing="10px" cellpadding="10px">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Content</th>
+                <th>Likes</th>
+                <th>Delete post</th>
+            </tr>
+        </thead>
+        <tbody id="data"> </tbody>
+    </table>
+
+</body>
+<script>
+
+    document.getElementById("form").addEventListener("submit", function (e) {
+        e.preventDefault()
+
+        let title = document.getElementById("title").value
+        let img = document.getElementById("img").value
+        let content = document.getElementById("content").value
+        let category = document.getElementById("category").value
+
+        console.log(title, img, content, category);
+
+        let tr = document.createElement("tr")
+        let td1 = document.createElement("td")
+        td1.innerHTML = title
+        let td2 = document.createElement("td")
+        td2.innerHTML = img
+        let td3 = document.createElement("td")
+        td3.innerHTML = content
+        let td4 = document.createElement("td")
+        td4.innerHTML = category
+
+        let td5 = document.createElement("td")
+        td5.innerHTML = "Like"
+        td5.addEventListener("click", function () {
+            alert("You liked this post!");
+
+        });
+
+        // delete
+        let td6 = document.createElement("td")
+        td6.innerHTML = "Delete"
+        td6.addEventListener("click", function (ev) {
+            ev.target.parentNode.remove()
+
+        });
+
+
+        tr.append(td1, td2, td3, td4, td5, td6)
+        console.log(tr);
+        document.getElementById("data").append(tr)
+    })
+</script>
+
+</html>
